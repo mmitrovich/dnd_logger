@@ -36,6 +36,13 @@ class EntriesController < ApplicationController
 		redirect_to entries_path(:log_book_id => @log_book.id)
 	end
 
+
+
+
+	
+
+
+
   private
 
   def entry_params
@@ -45,4 +52,6 @@ class EntriesController < ApplicationController
   def get_log_book
   	@log_book = LogBook.find(params[:log_book_id])
   end
+
+  
 end
