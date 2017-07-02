@@ -1,2 +1,14 @@
-<h1>Entries#index</h1>
-<p>Find me in app/views/entries/index.html.erb</p>
+<h1><%= link_to 'DND Logger', root_path %> - <%= @log_book.title %></h1>
+
+<%= form_for @entry, :url => entries_path(:log_book_id => @log_book.id) do |f| %>
+
+<%= f.text_field :description %>
+<%= f.submit %>
+
+<%= error_messages_for(f.object) %>
+
+<% end %>
+
+<h2>All Entries</h2>
+
+<%= render @entries %>

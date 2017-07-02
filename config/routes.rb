@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'entries/index'
-
-  get 'entries/edit'
 
 	root 'log_books#index'
 

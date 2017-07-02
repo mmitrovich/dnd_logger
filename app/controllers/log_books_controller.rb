@@ -12,11 +12,11 @@ class LogBooksController < ApplicationController
 
   def create
   	@log_book = LogBook.new(log_book_params)
-  	if @log_book.save
-  		redirect_to root_path
-	else
-		render 'index'
-	end
+    	if @log_book.save
+    		redirect_to root_path
+  	else
+  		render 'index'
+  	end
   end
 
   def update
