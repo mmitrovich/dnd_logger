@@ -8,6 +8,7 @@ class EntriesController < ApplicationController
   end
 
   def edit
+  	@entry = Entry.find(params[:id])
   end
 
   def create
@@ -19,6 +20,21 @@ class EntriesController < ApplicationController
   		render 'index'
   	end
   end
+
+	def update
+	  	@entry = Entry.find(params[:id])
+	  	if @entry.update_attributes(entry_params)
+	  		redirect_to entries_path(:log_book_id => @log_book.id)
+	  	else
+	  		render 'edit'
+	  	end
+  	end
+
+	def destroy
+		@entry = Entry.find(params[:id])
+		@entry.destroy
+		redirect_to entries_path(:log_book_id => @log_book.id)
+	end
 
   private
 

@@ -23,9 +23,9 @@ class LogBooksController < ApplicationController
   	@log_book = LogBook.find(params[:id])
   	if @log_book.update_attributes(log_book_params)
   		redirect_to root_path
-	else
-		render 'edit'
-	end
+  	else
+  		render 'edit'
+  	end
   end
 
   def destroy

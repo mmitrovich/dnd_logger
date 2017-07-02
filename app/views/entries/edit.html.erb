@@ -1,2 +1,10 @@
-<h1>Entries#edit</h1>
-<p>Find me in app/views/entries/edit.html.erb</p>
+<h1>DND Logger</h1>
+
+<%= form_for @entry, :url => entry_path(:log_book_id => @log_book.id) do |f| %>
+
+<%= f.text_field :description %>
+<%= f.submit %>
+
+<%= error_messages_for(f.object) %>
+
+<% end %>
