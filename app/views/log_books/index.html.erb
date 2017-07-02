@@ -1,2 +1,13 @@
-<h1>LogBooks#index</h1>
-<p>Find me in app/views/log_books/index.html.erb</p>
+<h1>DND Logger</h1>
+
+<%= form_for @log_book do |f| %>
+
+<%= f.text_field :title %>
+<%= f.submit %>
+
+<%= error_messages_for(f.object) %>
+
+<% end %>
+
+
+<%= render @log_books %>

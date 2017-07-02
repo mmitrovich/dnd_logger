@@ -1,2 +1,10 @@
-<h1>LogBooks#edit</h1>
-<p>Find me in app/views/log_books/edit.html.erb</p>
+<h1>DND Logger</h1>
+
+<%= form_for @log_book do |f| %>
+
+<%= f.text_field :title %>
+<%= f.submit %>
+
+<%= error_messages_for(f.object) %>
+
+<% end %>

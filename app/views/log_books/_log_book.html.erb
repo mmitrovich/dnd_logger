@@ -1,0 +1,3 @@
+<p id="log_book_id_<%= log_book.id %>">
+	<%= log_book.title %> | [<%= link_to 'edit', edit_log_book_path(log_book) %>] [<%= link_to 'x', log_book_path(log_book), :method => 'delete', :data => {:confirm => "Are you sure?  This cannot be undone!"} %>]
+</p>
