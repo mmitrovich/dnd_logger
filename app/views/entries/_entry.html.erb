@@ -1,5 +1,8 @@
-<p>
-	<%= entry.created_at %> <br>
-	<%= print_with_tags(entry.description) %><br>
-	[<%= link_to 'edit', edit_entry_path(entry, :log_book_id => @log_book.id) %>] [<%= link_to 'x', entry_path(entry, :log_book_id => @log_book.id), :method => 'delete', :data => {:confirm => "Are you sure?  This cannot be undone!"} %>]
+<p class="log_entry">
+	<span class="entry_date"><%= entry.created_at %></span>
+	<span class="entry_icons">
+	<%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_entry_path(entry, :log_book_id => @log_book.id) %> <%= link_to '<i class="fa fa-trash"></i>'.html_safe, entry_path(entry, :log_book_id => @log_book.id), :method => 'delete', :data => {:confirm => "Are you sure?  This cannot be undone!"} %>
+	</span><br>
+	<%= print_with_tags(entry.description) %>
+	
 </p>

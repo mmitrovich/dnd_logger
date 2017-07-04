@@ -2,7 +2,7 @@
 
 <%= form_for @entry, :url => entry_path(:log_book_id => @log_book.id) do |f| %>
 
-<%= f.text_field :description %>
+<%= f.text_area :description %>
 <%= f.submit %>
 
 <%= error_messages_for(f.object) %>

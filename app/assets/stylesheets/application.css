@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+
+body {
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+h1, h2, h3 {
+	font-family: Georgia,Times,"Times New Roman",serif;
+}

@@ -1,3 +1,56 @@
 // Place all the styles related to the Entries controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+	text-align: auto;
+	margin: auto;
+	padding: 20px;
+	max-width: 1280px;
+}
+
+h1 a {
+	text-decoration: none;
+	color: green;
+}
+
+#entry_description,
+ {
+	width: 100%;
+	margin-right: 100px;
+	height: 5em;
+}
+
+#new_entry.new_entry input,
+.edit_entry input {
+	float: right;
+	width: 300px;
+	border-top:		2px solid #a3ceda;
+	border-left:		2px solid #a3ceda;
+	border-right:		2px solid #4f6267;
+	border-bottom:		2px solid #4f6267;
+	padding:		10px 20px !important;
+	font-size:		14px !important;
+	font-weight:		bold;
+}
+
+.log_entry {
+
+	border: 1px solid #ddd;
+	padding: 5px;
+	.entry_date {
+		font-size: .8em;
+		color: #aaa;
+	}
+	.entry_icons {
+		float: right;
+		vertical-align: middle;
+		a{
+			color: green;
+		}
+	}
+}
+
+.hightlight {
+	background: yellow;
+}
