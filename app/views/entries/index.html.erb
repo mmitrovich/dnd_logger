@@ -21,7 +21,8 @@
 
 <script src="https://cdn.jsdelivr.net/mark.js/8.6.0/mark.min.js"></script>
 
-<input name="entry_filter" type="text" id="entry_filter" placeholder="Filter...">
+<input name="entry_filter" type="text" id="entry_filter" placeholder="Filter..."> <a href="" onclick="clearSearch"><i class="fa fa-trash-o" aria-hidden="true"></i></a>
+
 <div class="entry_list">
 
 <%= render @entries %>
@@ -41,6 +42,10 @@ var markInstance = new Mark($context);
 var keywordInput = document.getElementById('entry_filter');
 // var optionInputs = document.querySelectorAll("input[name='opt[]']");
 
+function clearSearch() {
+	i = getElementById("entry_filter");
+	i.value = '';
+};
 
 function performMark() {
 
