@@ -1,5 +1,7 @@
 <h1><%= link_to 'DND Logger', root_path %> - <%= @log_book.title %></h1>
 
+
+<div id="page-top-form">
 <%= form_for @entry, :url => entries_path(:log_book_id => @log_book.id) do |f| %>
 
 <%= f.text_area :description %>
@@ -8,6 +10,7 @@
 <%= error_messages_for(f.object) %>
 
 <% end %>
+</div>
 
 <div class="dropdown">
   <div class="dropdown-content">

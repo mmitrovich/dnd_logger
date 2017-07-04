@@ -1,3 +1,8 @@
-<p id="log_book_id_<%= log_book.id %>">
-	<%= link_to log_book.title, entries_path(:log_book_id => log_book.id) %> | [<%= link_to 'edit', edit_log_book_path(log_book) %>] [<%= link_to 'x', log_book_path(log_book), :method => 'delete', :data => {:confirm => "Are you sure?  This cannot be undone!"} %>]
+<p class="log_book_listing" id="log_book_id_<%= log_book.id %>">
+	<span class="entry_date"><%= log_book.created_at %></span>
+	<span class="entry_icons">
+		<%= link_to '<i class="fa fa-pencil"></i>'.html_safe, edit_log_book_path(log_book) %> <%= link_to '<i class="fa fa-trash"></i>'.html_safe, log_book_path(log_book), :method => 'delete', :data => {:confirm => "Are you sure?  This cannot be undone!"} %>
+	</span><br>
+
+	<%= link_to log_book.title, entries_path(:log_book_id => log_book.id) %> 
 </p>

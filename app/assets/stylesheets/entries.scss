@@ -21,6 +21,16 @@ h1 a {
 	height: 5em;
 }
 
+
+#new_entry {
+	border: 1px solid #aaa;
+	padding: 15px 15px 50px 15px;
+	margin-bottom: 15px;
+	border-radius: 10px;
+	background: DarkSeaGreen;
+}
+
+
 #new_entry.new_entry input,
 .edit_entry input {
 	float: right;
@@ -34,10 +44,12 @@ h1 a {
 	font-weight:		bold;
 }
 
-.log_entry {
+.log_entry,
+.log_book_listing {
 
 	border: 1px solid #ddd;
-	padding: 5px;
+	padding: 10px;
+	border-radius: 10px;
 	.entry_date {
 		font-size: .8em;
 		color: #aaa;
