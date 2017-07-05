@@ -13,11 +13,11 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: root
-  password:
   socket: /var/run/mysqld/mysqld.sock
 
 development:
+  username: root
+  password:
   <<: *default
   database: dnd_logger_development
 
@@ -50,5 +50,6 @@ test:
 production:
   <<: *default
   database: dnd_logger
+  host: localhost
   username: DndLogger.config.mysql_user_prod
   password: DndLogger.config.mysql_pass_prod
