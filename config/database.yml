@@ -50,5 +50,5 @@ test:
 production:
   <<: *default
   database: dnd_logger_production
-  username: dnd_logger
-  password: <%= ENV['DND_LOGGER_DATABASE_PASSWORD'] %>
+  username: DndLogger.mysql_user_prod
+  password: DndLogger.mysql_pass_prod
