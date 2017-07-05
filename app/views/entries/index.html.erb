@@ -34,7 +34,6 @@
 
 
 
-
 <script>
 
 // Create an instance of mark.js and pass an argument containing
@@ -70,4 +69,39 @@ keywordInput.addEventListener("input", performMark);
 // for (var i = 0; i < optionInputs.length; i++) {
 //   optionInputs[i].addEventListener("change", performMark);
 // }
+
+
+
+
+
+// autocomplete
+$('entry_description').textcomplete([
+  { // mention strategy
+    match: /(^|\s)@(\w*)$/,
+    search: function (term, callback) {
+      callback(cache[term], true);
+      $.getJSON('/search', { q: term })
+        .done(function (resp) { callback(resp); })
+        .fail(function ()     { callback([]);   });
+    },
+    replace: function (value) {
+      return '$1@' + value + ' ';
+    },
+    cache: true
+  },
+  { // emoji strategy
+    match: /(^|\s):(\w*)$/,
+    search: function (term, callback) {
+      var regexp = new RegExp('^' + term);
+      callback($.grep(emojies, function (emoji) {
+        return regexp.test(emoji);
+      }));
+    },
+    replace: function (value) {
+      return '$1:' + value + ': ';
+    }
+  }
+], { maxCount: 20, debounce: 500 });
+
+
 </script>
