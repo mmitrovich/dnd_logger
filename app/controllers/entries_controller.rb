@@ -3,10 +3,8 @@ class EntriesController < ApplicationController
 	before_action :get_log_book
 
   def index
-  	# @entries = @log_book.entries.sorted
     @entries = entry_filter
   	@entry = @log_book.entries.new
-    @char_lookup = Tag.where
     load_tags
   end
 
@@ -57,7 +55,7 @@ class EntriesController < ApplicationController
   end
 
   def add_tags (entry)
-    regex = /([@#])(\w+)|([@#])"([^"]+)"/
+    regex = /([@#\$!])(\w+)|([@#\$!])"([^"]+)"/
     entry.description.scan(regex) do |match|
       token, text = match.compact
       type = get_type(token)
@@ -70,6 +68,8 @@ class EntriesController < ApplicationController
     case token
       when '@' then 'characters'
       when '#' then 'locations'
+      when '$' then 'money'
+      when '!' then 'items'
     end
   end
 
@@ -100,11 +100,19 @@ class EntriesController < ApplicationController
   def load_tags
     @char_tags = []
     @loc_tags = []
+    @money_tags = []
+    @item_tags = []
     Tag.includes(:entries).where(:entries => {:log_book_id => @log_book}).where("tag_type = 'characters'").each do |t|
       @char_tags << t.tag_name
     end
     Tag.includes(:entries).where(:entries => {:log_book_id => @log_book}).where("tag_type = 'locations'").each do |t|
       @loc_tags << t.tag_name
+    end
+    Tag.includes(:entries).where(:entries => {:log_book_id => @log_book}).where("tag_type = 'money'").each do |t|
+      @money_tags << t.tag_name
+    end
+    Tag.includes(:entries).where(:entries => {:log_book_id => @log_book}).where("tag_type = 'items'").each do |t|
+      @item_tags << t.tag_name
     end
   end
   

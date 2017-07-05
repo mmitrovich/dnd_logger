@@ -16,7 +16,9 @@
   <div class="dropdown-content">
   <%= link_to 'All entries', entries_path(:log_book_id => @log_book.id) %> | 
   <%= link_to 'Characters', entries_path(:type_filter => 'characters', :log_book_id => @log_book.id) %> | 
-  <%= link_to 'Locations', entries_path(:type_filter => 'locations', :log_book_id => @log_book.id) %>
+  <%= link_to 'Locations', entries_path(:type_filter => 'locations', :log_book_id => @log_book.id) %> |
+  <%= link_to 'Money', entries_path(:type_filter => 'money', :log_book_id => @log_book.id) %> |
+  <%= link_to 'Items', entries_path(:type_filter => 'items', :log_book_id => @log_book.id) %>
   </div>
 </div>
 
@@ -93,11 +95,11 @@ $('#entry_description').textcomplete([{
     }
 },
 {
-    match: /([#])(\w{2,})$/i,
+    match: /([#]"?)(\w{2,})$/i,
     search: function (term, callback) {
         var words = <%= @loc_tags.to_json.html_safe %>;
         callback($.map(words, function (word) {
-            return word.indexOf(term) === 0 ? word : null;
+            return word.toLowerCase().indexOf(term.toLowerCase()) === 0 ? word : null;
         }));
     },
     replace: function (word) {
@@ -107,7 +109,41 @@ $('#entry_description').textcomplete([{
         return '@' + word + ' ';
       }
     }
+},
+{
+    match: /([\$]"?)(\w{2,})$/i,
+    search: function (term, callback) {
+        var words = <%= @money_tags.to_json.html_safe %>;
+        callback($.map(words, function (word) {
+            return word.toLowerCase().indexOf(term.toLowerCase()) === 0 ? word : null;
+        }));
+    },
+    replace: function (word) {
+        if (word.split(' ').length > 1) {
+         return '$' + '"' + word + '" '; 
+        } else {
+        return '$' + word + ' ';
+      }
+    }
+},
+{
+    match: /([!]"?)(\w{2,})$/i,
+    search: function (term, callback) {
+        var words = <%= @item_tags.to_json.html_safe %>;
+        callback($.map(words, function (word) {
+            return word.toLowerCase().indexOf(term.toLowerCase()) === 0 ? word : null;
+        }));
+    },
+    replace: function (word) {
+        if (word.split(' ').length > 1) {
+         return '!' + '"' + word + '" '; 
+        } else {
+        return '!' + word + ' ';
+      }
+    }
 }]);
+
+
 
 });
 </script>
