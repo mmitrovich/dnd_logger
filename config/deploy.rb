@@ -1,7 +1,7 @@
 # config valid only for current version of Capistrano
 lock "3.8.1"
 
-set :application, "dnd_tools"
+set :application, "dnd_logger"
 set :repo_url, "git@github.com:mmitrovich/dnd_logger.git"
 
 set :rails_env, 'production'

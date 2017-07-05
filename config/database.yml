@@ -49,6 +49,6 @@ test:
 #
 production:
   <<: *default
-  database: dnd_logger_production
+  database: dnd_logger
   username: DndLogger.mysql_user_prod
   password: DndLogger.mysql_pass_prod
