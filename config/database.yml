@@ -51,5 +51,5 @@ production:
   <<: *default
   database: dnd_logger
   host: localhost
-  username: DndLogger.config.mysql_user_prod
-  password: DndLogger.config.mysql_pass_prod
+  username: DndLogger.config.mysql_user
+  password: DndLogger.config.mysql_pass
