@@ -35,7 +35,7 @@
 
 
 <script>
-
+$( document ).ready(function() {
 // Create an instance of mark.js and pass an argument containing
 // the DOM object of the context (where to search for matches)
 var $context = document.querySelectorAll('p.log_entry');
@@ -75,33 +75,39 @@ keywordInput.addEventListener("input", performMark);
 
 
 // autocomplete
-$('entry_description').textcomplete([
-  { // mention strategy
-    match: /(^|\s)@(\w*)$/,
+$('#entry_description').textcomplete([{
+    match: /([@]"?)(\w{2,})$/i,
     search: function (term, callback) {
-      callback(cache[term], true);
-      $.getJSON('/search', { q: term })
-        .done(function (resp) { callback(resp); })
-        .fail(function ()     { callback([]);   });
+        // var words = ['google', 'facebook', 'github', 'microsoft', 'yahoo', 'three different words'];
+        var words = <%= @char_tags.to_json.html_safe %>;
+        callback($.map(words, function (word) {
+            return word.toLowerCase().indexOf(term.toLowerCase()) === 0 ? word : null;
+        }));
     },
-    replace: function (value) {
-      return '$1@' + value + ' ';
-    },
-    cache: true
-  },
-  { // emoji strategy
-    match: /(^|\s):(\w*)$/,
-    search: function (term, callback) {
-      var regexp = new RegExp('^' + term);
-      callback($.grep(emojies, function (emoji) {
-        return regexp.test(emoji);
-      }));
-    },
-    replace: function (value) {
-      return '$1:' + value + ': ';
+    replace: function (word) {
+        if (word.split(' ').length > 1) {
+         return '@' + '"' + word + '" '; 
+        } else {
+        return '@' + word + ' ';
+      }
     }
-  }
-], { maxCount: 20, debounce: 500 });
+},
+{
+    match: /([#])(\w{2,})$/i,
+    search: function (term, callback) {
+        var words = <%= @loc_tags.to_json.html_safe %>;
+        callback($.map(words, function (word) {
+            return word.indexOf(term) === 0 ? word : null;
+        }));
+    },
+    replace: function (word) {
+        if (word.split(' ').length > 1) {
+         return '@' + '"' + word + '" '; 
+        } else {
+        return '@' + word + ' ';
+      }
+    }
+}]);
 
-
+});
 </script>

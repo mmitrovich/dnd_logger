@@ -6,6 +6,8 @@ class EntriesController < ApplicationController
   	# @entries = @log_book.entries.sorted
     @entries = entry_filter
   	@entry = @log_book.entries.new
+    @char_lookup = Tag.where
+    load_tags
   end
 
   def edit
@@ -92,9 +94,18 @@ class EntriesController < ApplicationController
     else
         @filter_type = "All Entries"
         @log_book.entries.sorted
-
     end
+  end
 
+  def load_tags
+    @char_tags = []
+    @loc_tags = []
+    Tag.includes(:entries).where(:entries => {:log_book_id => @log_book}).where("tag_type = 'characters'").each do |t|
+      @char_tags << t.tag_name
+    end
+    Tag.includes(:entries).where(:entries => {:log_book_id => @log_book}).where("tag_type = 'locations'").each do |t|
+      @loc_tags << t.tag_name
+    end
   end
   
 end
