@@ -48,8 +48,10 @@ test:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
 production:
-  <<: *default
   database: dnd_logger
   host: localhost
-  username: DndLogger.config.mysql_user
-  password: DndLogger.config.mysql_pass
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: dnd_logger_user
+  password: DndTools.config.dnd_tools_database_password
