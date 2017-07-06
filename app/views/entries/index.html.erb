@@ -15,12 +15,12 @@
 <div class="dropdown">
   <div class="dropdown-content">
   <%= link_to 'All entries', entries_path(:log_book_id => @log_book.id) %> | 
-  <%= link_to 'Characters', entries_path(:type_filter => 'characters', :log_book_id => @log_book.id) %> | 
-  <%= link_to 'Locations', entries_path(:type_filter => 'locations', :log_book_id => @log_book.id) %> |
-  <%= link_to 'Money', entries_path(:type_filter => 'money', :log_book_id => @log_book.id) %> |
-  <%= link_to 'Items', entries_path(:type_filter => 'items', :log_book_id => @log_book.id) %> |
-  <%= link_to 'Rules', entries_path(:type_filter => 'rules', :log_book_id => @log_book.id) %> |
-  <%= link_to 'Organizations', entries_path(:type_filter => 'orgs', :log_book_id => @log_book.id) %>
+  @<%= link_to 'Characters', entries_path(:type_filter => 'characters', :log_book_id => @log_book.id) %> | 
+  #<%= link_to 'Locations', entries_path(:type_filter => 'locations', :log_book_id => @log_book.id) %> |
+  $<%= link_to 'Money', entries_path(:type_filter => 'money', :log_book_id => @log_book.id) %> |
+  !<%= link_to 'Items', entries_path(:type_filter => 'items', :log_book_id => @log_book.id) %> |
+  ~<%= link_to 'Rules', entries_path(:type_filter => 'rules', :log_book_id => @log_book.id) %> |
+  ^<%= link_to 'Organizations', entries_path(:type_filter => 'orgs', :log_book_id => @log_book.id) %>
   </div>
 </div>
 
@@ -172,7 +172,7 @@ $('#entry_description').textcomplete([{
         if (word.split(' ').length > 1) {
          return '^' + '"' + word + '" '; 
         } else {
-        return '^' + word + ' ';
+        return '~' + word + ' ';
       }
     }
 }]);
