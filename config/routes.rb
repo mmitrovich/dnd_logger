@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
 
+  get 'tags/index'
+
 	root 'log_books#index'
 
 	resources :log_books

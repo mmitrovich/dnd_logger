@@ -33,7 +33,7 @@ class EntriesController < ApplicationController
 	  	else
 	  		render 'edit'
 	  	end
-  	end
+	end
 
 	def destroy
 		@entry = Entry.find(params[:id])

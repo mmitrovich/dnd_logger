@@ -5,6 +5,7 @@ class LogBook < ApplicationRecord
 
 
 	has_many :entries, :dependent => :destroy
+	has_many :tags, :through => :entries
 
 	scope :sorted, lambda {order('created_at DESC')}
 end
