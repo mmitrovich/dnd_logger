@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
 
 
-  get 'tags/index'
+  get 'tags' => 'tags#index'
 
 	root 'log_books#index'
 
 	resources :log_books
 	resources :entries
+
 
 
 	get 'access/login'

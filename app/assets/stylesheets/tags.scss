@@ -1,3 +1,11 @@
 // Place all the styles related to the Tags controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#index-letters {
+	li {
+		list-style: none;
+		display: inline;
+		padding-right: .5em;
+	}
+}

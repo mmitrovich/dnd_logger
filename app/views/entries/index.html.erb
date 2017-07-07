@@ -22,6 +22,7 @@
   ~<%= link_to 'Rules', entries_path(:type_filter => 'rules', :log_book_id => @log_book.id) %> |
   ^<%= link_to 'Organizations', entries_path(:type_filter => 'orgs', :log_book_id => @log_book.id) %>
   </div>
+  <%= link_to "Tags Index", tags_path(:log_book_id => @log_book.id) %>
 </div>
 
 <h2><%= @filter_type %></h2>
