@@ -6,7 +6,7 @@ class TagsController < ApplicationController
 		@tags = @log_book.tags.sorted.uniq
 		@indexed = {}
 		@tags.each do |tag|
-			letter = tag.tag_name.slice(0,1).upcase
+			letter = tag.tag_name.slice(0,1).upcase.gsub(/\d/, "#")
 			@indexed[letter] ||= []
 			@indexed[letter] << tag
 		end
