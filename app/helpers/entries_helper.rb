@@ -3,7 +3,7 @@ module EntriesHelper
 
 	def print_with_tags(text)
 		regex = {
-			:single => /([\^~@#\$!])([\w]+)/,
+			:single => /([\^~@#*\$!])([\w]+)/,
 			:multi => /([\^~@#*\$!])"([^"]+)"/
 		}
 		new_string = text.gsub regex[:multi] do 
@@ -24,6 +24,7 @@ module EntriesHelper
 	      when '!' then 'items'
 	      when '~' then 'rules'
 	      when '^' then 'orgs'
+	      when '*' then 'plots'
 	    end
 	end
 end

@@ -20,7 +20,8 @@
   $<%= link_to 'Money', entries_path(:type_filter => 'money', :log_book_id => @log_book.id) %> |
   !<%= link_to 'Items', entries_path(:type_filter => 'items', :log_book_id => @log_book.id) %> |
   ~<%= link_to 'Rules', entries_path(:type_filter => 'rules', :log_book_id => @log_book.id) %> |
-  ^<%= link_to 'Organizations', entries_path(:type_filter => 'orgs', :log_book_id => @log_book.id) %>
+  ^<%= link_to 'Organizations', entries_path(:type_filter => 'orgs', :log_book_id => @log_book.id) %> |
+  *<%= link_to 'Plots', entries_path(:type_filter => 'plots', :log_book_id => @log_book.id) %>
   </div>
   <%= link_to "Tags Index", tags_path(:log_book_id => @log_book.id) %>
 </div>
@@ -174,6 +175,22 @@ $('#entry_description').textcomplete([{
          return '^' + '"' + word + '" '; 
         } else {
         return '~' + word + ' ';
+      }
+    }
+},
+{
+    match: /([*]"?)(\w{2,})$/i,
+    search: function (term, callback) {
+        var words = <%= @plot_tags.to_json.html_safe %>;
+        callback($.map(words, function (word) {
+            return word.toLowerCase().indexOf(term.toLowerCase()) === 0 ? word : null;
+        }));
+    },
+    replace: function (word) {
+        if (word.split(' ').length > 1) {
+         return '*' + '"' + word + '" '; 
+        } else {
+        return '*' + word + ' ';
       }
     }
 }]);

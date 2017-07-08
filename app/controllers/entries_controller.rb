@@ -55,7 +55,7 @@ class EntriesController < ApplicationController
   end
 
   def add_tags (entry)
-    regex = /([\^~@#\$!])(\w+)|([\^~@#\$!])"([^"]+)"/
+    regex = /([*\^~@#\$!])(\w+)|([*\^~@#\$!])"([^"]+)"/
     entry.description.scan(regex) do |match|
       token, text = match.compact
       type = get_type(token)
@@ -72,6 +72,7 @@ class EntriesController < ApplicationController
       when '!' then 'items'
       when '~' then 'rules'
       when '^' then 'orgs'
+      when '*' then 'plots'
     end
   end
 
@@ -106,6 +107,7 @@ class EntriesController < ApplicationController
     @item_tags = []
     @rule_tags = []
     @org_tags = []
+    @plot_tags = []
     Tag.includes(:entries).where(:entries => {:log_book_id => @log_book}).where("tag_type = 'characters'").each do |t|
       @char_tags << t.tag_name
     end
@@ -123,6 +125,9 @@ class EntriesController < ApplicationController
     end
     Tag.includes(:entries).where(:entries => {:log_book_id => @log_book}).where("tag_type = 'orgs'").each do |t|
       @org_tags << t.tag_name
+    end
+    Tag.includes(:entries).where(:entries => {:log_book_id => @log_book}).where("tag_type = 'plots'").each do |t|
+      @plot_tags << t.tag_name
     end
   end
   
